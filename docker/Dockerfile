@@ -1,19 +1,13 @@
-# Dockerfile
+FROM node:12.19.0-alpine3.9 
 
-# base image
-FROM node:alpine
+WORKDIR /usr/src/app
 
-# create & set working directory
-RUN mkdir -p /usr/src
-WORKDIR /usr/src
+COPY package*.json ./
 
-# copy source files
-COPY . /usr/src
+#RUN npm install glob rimraf
 
-# install dependencies
-#RUN npm install
+RUN npm install --only=development
 
-# start app
-#RUN npm run build
-#EXPOSE 3000
-#CMD npm run start
+COPY . .
+
+RUN npm run build
