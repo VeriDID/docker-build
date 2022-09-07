@@ -11,9 +11,9 @@ WORKDIR /usr/src
 COPY . /usr/src
 
 # install dependencies
-RUN npm install
+#RUN npm install
 
 # start app
-RUN npm run build
-EXPOSE 3000
-CMD npm run start
+#RUN npm run build
+#EXPOSE 3000
+#CMD npm run start
