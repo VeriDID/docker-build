@@ -15,7 +15,7 @@ import { Client } from "pg";
 //   return `postgres://${postgres_user}:${postgres_pw}@${postgres_host}/${postgres_db}`;
 // }
 
-const cs = "postgres://postgresUser:postgresPW@localhost:5455/postgres";
+const cs = "postgres://postgresUser:postgresPW@192.168.49.2:30001/postgres";
 // const cs = postgresCS();
 
 // docker run --name myPostgresDb -p 5455:5432 -e POSTGRES_USER=postgresUser -e POSTGRES_PASSWORD=postgresPW -e POSTGRES_DB=postgresDB -d postgres
