@@ -1,46 +1,11 @@
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
--update this
-
-## Installation
+This is a simple nestjs app for testing our CI/CD pipeline using Github Actions and AWS EKS(Elastic Kubernetes Service). 
 
 
-## Running the app
+## Testing
 
-```bash
-# development
-$ x
+Push any change to the repository. (then wait for a minute for the changes to be applied)
 
-# watch mode
-$ x
+[Click here](http://a97c02a00da6b45f19484628e5915558-1449757156.ca-central-1.elb.amazonaws.com:3001/) to see the latest deployed app.
 
-# production mode
-$ x
-```
-
-## Test
-
-```bash
-# unit tests
-$ x
-
-# e2e tests
-$ x
-
-# test coverage
-$ x
-```
-
-## Support
-
---
-
-## Stay in touch
-
-- Author - [Elanie Quiambao]
-
-## License
-
---
