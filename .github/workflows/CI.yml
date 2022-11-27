@@ -43,6 +43,7 @@ jobs:
             type=sha
             
       - name: Build and push Docker image
+        id: docker_image
         uses: docker/build-push-action@v3
         with:
           context: .
@@ -57,5 +58,5 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: VeriDID/docker-build-k8s-config
           event-type: new-image
-          client-payload: '{"image": "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}"}' 
-  #        client-payload: '{"ref": "${{ github.ref }}","sha":"${{github.sha}}"}'
+#           client-payload: '{"image": "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}"}' 
+          client-payload: '{"image": "${{ steps.docker_image.outputs.imageid }}"}'
