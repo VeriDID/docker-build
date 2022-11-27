@@ -52,11 +52,11 @@ jobs:
  #         tags: ${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
           labels: ${{ steps.meta.outputs.labels }}
           
-      - name: Get short git commit SHA
-        id: get_short_sha
+      - name: Get Docker image by manual building 
+        id: get_image
         run: |
-          shortSha=$(git rev-parse --short ${{ github.sha }})
-          echo "::set-output name=short_sha::sha-$shortSha"
+          image=${{ fromJSON(steps.meta.outputs.json).args['DOCKER_META_IMAGES'] }}:sha-$(git rev-parse --short ${{ github.sha }})
+          echo "::set-output name=image::$image"
     
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v2
@@ -65,4 +65,4 @@ jobs:
           repository: VeriDID/docker-build-k8s-config
           event-type: new-image
 #           client-payload: '{"image": "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}"}' 
-          client-payload: '{"image": "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.get_short_sha.outputs.short_sha }}"}'
+          client-payload: '{"image": "${{ steps.get_image.outputs.image }}"}'
