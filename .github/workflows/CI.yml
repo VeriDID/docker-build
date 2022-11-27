@@ -56,7 +56,7 @@ jobs:
         id: get_short_sha
         run: |
           shortSha=$(git rev-parse --short ${{ github.sha }})
-          echo "::set-output name=short_sha::$shortSha"
+          echo "::set-output name=short_sha::sha-$shortSha"
     
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v2
