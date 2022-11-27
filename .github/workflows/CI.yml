@@ -14,6 +14,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  IMAGE_TAG: $(git rev-parse --short ${{ github.sha }})
 
 jobs:
   build-and-push-image:
@@ -59,4 +60,4 @@ jobs:
           repository: VeriDID/docker-build-k8s-config
           event-type: new-image
 #           client-payload: '{"image": "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}"}' 
-          client-payload: '{"image": "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}"}'
+          client-payload: '{"image": "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}"}'
