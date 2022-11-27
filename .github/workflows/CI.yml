@@ -13,7 +13,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: veridid/docker-build
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build-and-push-image:
@@ -33,23 +33,23 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-     # - name: Extract metadata (tags, labels) for Docker
-     #   id: meta
-     #   uses: docker/metadata-action@v4
-     #   with:
-     #     images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-     #     tags: |
-     #       type=ref,event=branch
-     #       type=sha
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=sha
             
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
           context: .
           push: true
- #         tags: ${{ steps.meta.outputs.tags }}
-          tags: ${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
- #         labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
+ #         tags: ${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
+          labels: ${{ steps.meta.outputs.labels }}
           
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v2
@@ -59,4 +59,3 @@ jobs:
           event-type: new-image
           client-payload: '{"image": "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}"}' 
   #        client-payload: '{"ref": "${{ github.ref }}","sha":"${{github.sha}}"}'
-        
