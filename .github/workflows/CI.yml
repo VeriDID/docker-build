@@ -55,7 +55,7 @@ jobs:
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          repository: ${{ github.actor }}/docker-build-k8s-config
+          repository: VeriDID/docker-build-k8s-config
           event-type: new-image
           client-payload: '{"image": "${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}"}' 
  #         client-payload: '{"ref": "${{ github.ref }}","sha":"${{github.sha}}"}'
