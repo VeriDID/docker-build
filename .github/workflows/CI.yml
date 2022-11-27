@@ -55,7 +55,7 @@ jobs:
       - name: Get Docker image by manual building 
         id: get_image
         run: |
-          image=${{ fromJSON(steps.meta.outputs.json).args['DOCKER_META_IMAGES'] }}:sha-$(git rev-parse --short ${{ github.sha }})
+          image=${{ fromJSON(steps.meta.outputs.bake-file).target['docker-metadata-action']['args']['DOCKER_META_IMAGES'] }}:sha-$(git rev-parse --short ${{ github.sha }})
           echo "::set-output name=image::$image"
     
       - name: Repository Dispatch
