@@ -28,6 +28,6 @@ export class AppService {
       await client.end();
     };
     dbQuery();
-    return 'Hello VeriDID Team! 😊😊😊 - Nov26';
+    return 'Hello VeriDID Team! 😊😊😊 - Nov27';
   }
 }
