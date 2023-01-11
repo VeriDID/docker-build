@@ -27,7 +27,7 @@ export class AppService {
       console.log(res.rows[0].message); // Hello world!
       await client.end();
     };
-    dbQuery();
+    // dbQuery();
     return 'Hello VeriDID Team! 😊😊😊 - Nov29';
   }
 }
