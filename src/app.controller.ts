@@ -20,13 +20,13 @@ export class AppController {
     return 'Hello from Bar';
   }
 
-  @Get('dev/foo')
-  getDevFoo(): string {
-    return 'Hello from Dev Foo';
+  @Get('admin')
+  getAdmin(): string {
+    return 'Hello from Admin User';
   }
 
-  @Get('dev/bar')
-  getDevBar(): string {
-    return 'Hello from Dev Bar';
+  @Get('regular')
+  getRegular(): string {
+    return 'Hello from Regular User';
   }
 }
